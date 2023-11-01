@@ -69,6 +69,20 @@ const movies = [
       duration: "2ч 06мин",
       trailerLink: "https://www.kinopoisk.ru/film/1392550/video/180674/",
     },
+    {
+      id: 11,
+      name: "Человек-улыбка",
+      link: "https://my.mirkino.vip/upload/159/15978.jpg",
+      duration: "10 мин",
+      trailerLink: "https://www.kinopoisk.ru/film/766592/video/83195/",
+    },
+    {
+      id: 12,
+      name: "Кунг Фьюри",
+      link: "https://picfiles.alphacoders.com/105/105426.jpg",
+      duration: "31 мин",
+      trailerLink: "https://www.kinopoisk.ru/film/824954/video/120338/",
+    },
   ];
   
   export default movies;

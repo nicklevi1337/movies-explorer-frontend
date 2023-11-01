@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -43,7 +44,7 @@ function Header({ isLoggedIn }) {
               >
                 <div className="header__menu">
                   <Navigation onClick={handleOpenMenu} />
-                  <AccountLink onClick={handleOpenMenu}/>
+                  <AccountLink onClick={handleOpenMenu} />
                 </div>
               </div>
             </div>
@@ -65,9 +66,16 @@ function Header({ isLoggedIn }) {
           </>
         )}
         {isLoggedIn && pathname === "/" && <FormLink />}
-      </div>
+        </div>
     </header>
   );
 }
 
 export default Header;
+
+
+/*
+
+
+<div className="header__container">
+*/
