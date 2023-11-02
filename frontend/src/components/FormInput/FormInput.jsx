@@ -27,7 +27,6 @@ function FormInput({
         required
       />
       <span className="form-input__error">{error}</span>
-      {/* <span className="form-input__error form-input__error_hidden">{error}</span> */}
     </label>
   );
 }
