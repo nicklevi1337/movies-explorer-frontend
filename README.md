@@ -14,7 +14,7 @@ npm run build — запуск проекта в режиме продакшн, 
 npm start — запуск проекта в режиме разработки
 
 # Ссылки
-Ссылка на репозиторий проекта : https://github.com/PrettyLolli137/movies-explorer-frontend/tree/main
+Ссылка на репозиторий проекта : https://github.com/PrettyLolli137/movies-explorer-frontend/tree/level-2
 
 # Используемые технологии
 HTML
