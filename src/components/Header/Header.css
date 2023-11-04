@@ -116,8 +116,8 @@
     display: block;
     cursor: pointer;
     background-image: url("../../images/burger/burger__menu.svg");
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 42px;
   }
 
   .header__close-btn {

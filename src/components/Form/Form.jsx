@@ -19,7 +19,8 @@ function Form({ title, children, error, buttonText, text, pathname, link, name }
           }
         >
           <span className="form-section__error"></span>
-          <button type="submit" className="form-section__btn">
+        </div>
+        <button type="submit" className="form-section__btn">
             {buttonText}
           </button>
           <p className="form-section__text">
@@ -28,7 +29,6 @@ function Form({ title, children, error, buttonText, text, pathname, link, name }
               {` ${link}`}
             </Link>
           </p>
-        </div>
       </form>
     </section>
   );

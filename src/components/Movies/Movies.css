@@ -1,7 +1,7 @@
 .movies__btn-more-container {
     width          : 90%;
     margin         : auto;
-    padding        : 50px 0 80px;
+    padding: 36px 0 100px;
     display        : flex;
     justify-content: center;
 }
@@ -31,12 +31,14 @@
 @media screen and (max-width: 768px) {
     .movies__btn-more-container {
         width: 92%;
+        margin-top: 27px;
     }
 }
 
 @media screen and (max-width: 540px) {
     .movies__btn-more-container {
-        width: 93.7%;
+        width: 75%;
+        padding: 9px 0 100px;
     }
 }
 

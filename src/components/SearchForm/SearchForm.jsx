@@ -12,13 +12,14 @@ function SearchForm() {
   return (
     <section className="search">
       <form className="search__form-wrapper"  action="#" name="search-form">
-        <div action="" className="search__form">
+        <div  className="search__form">
           <div className="search__input-container">
             <div className="search__input-wrapper">
               <input
                 type="text"
                 className="search__input"
                 placeholder="Фильм"
+                required
               />
             </div>
           </div>

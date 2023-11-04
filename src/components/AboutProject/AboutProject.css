@@ -1,5 +1,5 @@
 .aboutProject {
-    margin        : 0 18px 70px 18px;
+    margin: 61px 18px 70px 18px;
     display       : flex;
     flex-direction: column;
 }
@@ -50,7 +50,7 @@
 
 .aboutProject__indicator:first-child {
     flex-grow: 1;
-    max-width: 140px;
+    max-width: 102px;
 }
 
 .aboutProject__one-week {
@@ -59,7 +59,7 @@
     line-height: 13px;
     font-size  : .6875rem;
     background : #3DDC84;
-    padding    : 10px 0;
+    padding    : 14px 0;
     box-sizing : border-box;
     margin     : 0;
 }
@@ -74,7 +74,7 @@
     text-align : center;
     color      : white;
     line-height: 13px;
-    padding    : 10px 0;
+    padding    : 12px 0;
     box-sizing : border-box;
     background : #303030;
     margin     : 0;
@@ -85,12 +85,12 @@
     text-align : center;
     font-size  : .6875rem;
     line-height: 13px;
-    margin     : 10px 0 0;
+    margin     : 12px 0 0;
 }
 
 @media (min-width: 768px) {
     .aboutProject {
-        margin: 0 50px 90px 50px;
+        margin: -19px 61px 89px 48px;
     }
 
     .aboutProject__title {
@@ -102,6 +102,7 @@
 
     .aboutProject__table {
         flex-direction: row;
+        gap: 22px;
     }
 
     .aboutProject__cell:nth-of-type(1n) {
@@ -130,6 +131,7 @@
     .aboutProject__one-week {
         font-size  : .875rem;
         line-height: 17px;
+        padding: 6px 0;
     }
 
     .aboutProject__indicator:last-child {
@@ -138,7 +140,8 @@
 
     .aboutProject__four-week {
         font-size  : .875rem;
-        line-height: 17px;
+      /*  line-height: 17px; */
+      padding: 10px 0 0 8px;
     }
 
     .aboutProject__development {
@@ -151,6 +154,14 @@
 @media (min-width: 1280px) {
     .aboutProject {
         margin: 0 70px 110px 70px;
+    }
+
+    .aboutProject__title{
+        padding-bottom: 23px;
+    }
+
+    .aboutProject__table {
+        gap: 22px;
     }
 
     .aboutProject__cell:nth-of-type(1n) {
@@ -173,4 +184,8 @@
     .aboutProject__indicator:last-child {
         flex-grow: 5;
     }
+    .aboutProject__one-week {
+        padding: 9px 0;
+    }
+    
 }

@@ -11,7 +11,7 @@ function Authorization({ user }) {
         buttonText="Войти"
         text="Еще не зарегистрированы?"
         pathname="/signup"
-        link="Зарегистрироваться"
+        link="Регистрация"
       >
         <FormInput
           title="E-mail"

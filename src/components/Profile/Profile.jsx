@@ -19,12 +19,11 @@ function Profile({ user }) {
       <form className="profile__form" name="edit-profile">
         <div className="profile__info">
           <label className="profile__input-container profile__input-container_type_name">
-            <p className="profile__text">Имя</p>
+            <span className="profile__text">Имя</span>
             <input
               className="profile__text profile__text_input"
               type="text"
               name="name"
-              form="edit-profile"
               placeholder="Введите имя"
               minLength="2"
               maxLength="30"
@@ -33,12 +32,11 @@ function Profile({ user }) {
             />
           </label>
           <label className="profile__input-container profile__input-container_type_email">
-            <p className="profile__text">E-mail</p>
+            <span className="profile__text">E-mail</span>
             <input
               className="profile__text profile__text_input"
               type="email"
               name="email"
-              form="edit-profile"
               placeholder="Укажите e-mail"
               id="email-id"
               value={user.email}

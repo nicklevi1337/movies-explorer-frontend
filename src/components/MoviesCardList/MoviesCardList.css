@@ -58,7 +58,7 @@
   @media screen and (max-width: 740px) {
     .movies-card-list {
       width: 93.7%;
-      margin: 40px auto 13px;
+      margin: 52px auto 13px;
     }
   
     .movies-card-list__not-found {
@@ -68,6 +68,6 @@
   
     .movies-card-list__container {
       grid-template-columns: repeat(auto-fit, 300px);
-      gap: 37px 0 0;
+      gap: 37px;
     }
   }

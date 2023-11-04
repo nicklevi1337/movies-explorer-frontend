@@ -1,7 +1,7 @@
 .search {
     width: 90%;
     margin: 0 auto 10px;
-    padding: 70px 0 69px;
+    padding: 80px 0 69px;
     border-bottom: 1px solid #424242;
   }
   
@@ -44,7 +44,8 @@
     border-radius: 8px;
     align-items: center;
     background-color: #2F2F2F;
-    height: 50px;
+    height: 43px;
+    margin-left: 8px;
   }
   
   .search__input {
@@ -52,6 +53,7 @@
     display: block;
     width: 100%;
     color:  #8B8B8B;
+    padding-left: 12px;
     }
   
   .search__input::placeholder {
@@ -65,7 +67,7 @@
     
     all: unset;
     cursor: pointer;
-    margin: 0 0 0 10px;
+    margin: 0 5px 0px 16px;
     background-image: url("./../../images/searchForm/find-3.svg");
     min-width: 44px;
     min-height: 44px;
@@ -80,12 +82,13 @@
     display: flex;
     gap: 14px;
     align-items: center;
-    margin-top: 42px;
+    margin-top: 31px;
     height: 55%;
     padding: 0 30px;
     font-size: 13px;
     font-weight: 400;
     line-height: 1.38;
+    margin-left: 10px;
   }
   
   .search__filter-title {
@@ -95,8 +98,8 @@
 
   @media screen and (max-width: 860px) {
     .search {
-      padding: 74px 0 109px;
-    }
+      padding: 74px 0 80px;
+        }
   }
   
   @media screen and (max-width: 768px) {
@@ -106,16 +109,27 @@
       padding: 80px 0 109px;
       */
     }
+
+    .search__btn {
+
+      margin: 5px -3px 1px 10px;
+    }
   
     .search__filter-container {
       gap: 15px;
-      padding: 0 20px 0 19px;
+      padding: 0 15px 0 19px;
+      margin-top: 43px;
     }
+    .search__input-wrapper {
+      
+      margin-top: 8px;
+  }
+
   }
   
   @media screen and (max-width: 540px) {
     .search {
-      padding: 80px 0 45px;
+      padding: 62px 0 38px;
     }
   
     .search__form-wrapper {
@@ -123,7 +137,7 @@
       height: 100%;
       border-radius: 0;
       box-shadow: none;
-      gap: 46px;
+      gap: 34px;
     }
   
     .search__form {
@@ -138,5 +152,16 @@
       margin: 0;
       padding: 0;
       border-left: none;
+      margin-left: 21px;
+    }
+
+    .search__btn {
+    
+     
+      margin: 0 0px 0px 16px;
+    
+    }
+    .search__input-wrapper {
+      margin: 0;
     }
   }

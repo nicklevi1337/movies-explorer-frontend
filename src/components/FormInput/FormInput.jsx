@@ -13,10 +13,10 @@ function FormInput({
 }) {
   return (
     <label className="form-input">
-      <p className="form-input__caption">{title}</p>
+       <span className="form-input__caption">{title}</span>
       <input
         className={`form-input__input ${
-          isError ? "auth-input__input_valid_error" : ""
+          isError ? "form-input__input_valid_error" : ""
         }`}
         type={type}
         name={name}

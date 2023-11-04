@@ -1,4 +1,5 @@
 import "./AboutMe.css";
+import avatar from "./../../images/aboutMe/me.jpg";
 
 function AboutMe() {
   const birthYear = 2000;
@@ -23,6 +24,8 @@ function AboutMe() {
               href="https://github.com/PrettyLolli137"
               title="GitHub"
               className="aboutMe__link"
+              target="_blank"
+              rel="noreferrer"
             >
               GitHub
             </a>
@@ -30,6 +33,8 @@ function AboutMe() {
               href="https://t.me/lollisama"
               title="Telegram"
               className="aboutMe__link"
+              target="_blank"
+              rel="noreferrer"
             >
               Telegram
             </a>
@@ -37,12 +42,14 @@ function AboutMe() {
               href="https://www.instagram.com/lolllisama/"
               title="Inst"
               className="aboutMe__link"
+              target="_blank"
+              rel="noreferrer"
             >
               Instagram
             </a>
           </div>
         </div>
-        <div className="aboutMe__image" alt="Фото студента"></div>
+        <img className="aboutMe__image" alt="Фото студента" src={avatar}></img>
       </div>
     </section>
   );

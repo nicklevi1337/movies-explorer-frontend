@@ -21,9 +21,10 @@
     letter-spacing: -0.04em;
     padding-bottom: 19px;
     transition: .1s ease;
-    background: url("./../../images/portfolio/aboutme__link.png") no-repeat right top;
+    background: url("./../../images/portfolio/aboutme__link.svg") no-repeat right top;
     background-size: 12px;
-    background-position-y: 7px;
+    background-position-y: 6px;
+    background-position-x: 282px;
 }
 
 .portfolio__link:not(:first-child) {
@@ -42,7 +43,7 @@
 
 @media (min-width: 768px) {
     .portfolio {
-        margin: 0 26px 90px;
+        margin: -45px 51px 90px 50px;
     }
 
     .portfolio__title {
@@ -53,19 +54,23 @@
     .portfolio__link {
         font-size: 1.75rem;
         line-height: 50px;
-        background-size: 20px;
-        background-position-y: 12px;
+        background-size: 17px;
+        background-position-y: 20px;
+        background-position-x: 645px;
     }
 }
 
 @media (min-width: 1280px) {
     .portfolio {
-        margin: 0 36px 125px;
+        margin: -40px 70px 119px;
     }
 
     .portfolio__link {
         font-size: 1.875rem;
-        background-size: 22px;
-        background-position-y: 12px;
+        background-size: 19px;
+        background-position-y: 17px;
+        background-position-x: 1115px;
     }
+
+   
 }

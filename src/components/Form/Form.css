@@ -6,14 +6,14 @@
   .form-section__title {
     font-size: 24px;
     font-weight: 500;
-    margin: 40px 0;
+    margin: 39px 0;
     color: #fff;
   }
   
   .form-section__input-container {
     display: flex;
     flex-direction: column;
-    /* gap: 5px; */
+    /* gap: 60px; */
   }
   
   .form-section__space {
@@ -78,6 +78,7 @@
     color: #a0a0a0;
     font-size: 14px;
     font-weight: 400;
+    text-align: center;
   }
   
   .form-section__link {
@@ -101,6 +102,9 @@
       margin: 56px auto;
     }
   
+    .form-section__form{
+      width: 82%;
+    }
     .form-section__error {
       font-size: 10px;
     }
@@ -116,4 +120,25 @@
     .form-section__link {
       font-size: 12px;
     }
+
+    .form-section__title {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 49px 0;
+      color: #fff;
+      padding-bottom: 28px;
+    }
+
+  
+    .form-section__space_three-input {
+      margin-top: 125px;
+    }
+    .form-section__space_two-input {
+      margin-top: 217px;
+    }
+    .form-section__btn {
+      margin: 19px 0 16px;
+
+    }
+    
   }
