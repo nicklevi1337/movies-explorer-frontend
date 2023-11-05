@@ -1,11 +1,23 @@
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 
-function Navigation({ onClick }) {
-  const { pathname } = useLocation();
+function Navigation() {
+
   return (
-    <nav className="navigation">
+    <nav className='header__navigation'>
+        <NavLink to='/movies' title='Фильмы' className='header__link header__link_type_films' activeClassName='header__link_active'>Фильмы</NavLink>
+        <NavLink to='/saved-movies' title='Сохранённые фильмы' className='header__link header__link_type_saved-films' activeClassName='header__link_active'>Сохранённые фильмы</NavLink>
+    </nav>
+  );
+}
+
+export default Navigation;
+
+
+/*
+
+<nav className="navigation">
       <NavLink
         to="/"
         className={`navigation__link navigation__link_type_main ${
@@ -36,7 +48,4 @@ function Navigation({ onClick }) {
         Сохранённые фильмы
       </NavLink>
     </nav>
-  );
-}
-
-export default Navigation;
+*/

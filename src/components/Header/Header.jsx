@@ -1,33 +1,71 @@
 import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+//import { useState } from "react";
+//import { useLocation } from "react-router-dom";
 
 import Navigation from "../Navigation/Navigation";
-import AccountLink from "../AccountLink/AccountLink";
+//import AccountLink from "../AccountLink/AccountLink";
 import FormLink from "../FormLink/FormLink";
 import Logo from "./../ui/Logo/Logo";
+import AuthMobile from "./../AuthMobile/AuthMobile"
+import Hamburger from "./../Hamburger/Hamburger"
 
-function Header({ isLoggedIn }) {
-  const [menu, setMenu] = useState();
-  const { pathname } = useLocation();
-  function handleOpenMenu() {
-    setMenu(!menu);
-  }
-
-  const headerMenu =
-    // pathname === "/" ||
-    pathname === "/movies" ||
-    pathname === "/saved-movies" ||
-    pathname === "/profile";
-
+function Header( props ) {
+  const { loggedIn,
+    hamburger,
+    onHandleHamburger,
+} = props;
   return (
-    <header className={pathname === "/" ? "header header_black" : "header"}>
+    <>
+    { loggedIn ? (
+      <AuthMobile
+          hamburger={hamburger}
+          onHandleHamburger={onHandleHamburger}
+      />
+    ) : null}
+    <header className='header'>
+      <Logo />
+      { loggedIn ?
+          (
+              <>
+                  <Hamburger
+                      onHandleHamburger={onHandleHamburger}
+                  />
+                  <Navigation />
+                  <Link to='/profile' title='Аккаунт' className='header__link header__link_type_account'>
+                      <p className='header__account'>Аккаунт</p>
+                      <span className='header__image'/>
+                  </Link>
+              </>
+          ) :
+          (
+              <div className='header__sign'>
+                <FormLink />
+              </div>
+          )
+      }
+    </header>
+    </>
+  );
+}
+
+export default Header;
+
+
+/*
+<header className={pathname === "/" ? "header header_black" : "header"}>
+ <Link to="/profile" >profile</Link>
+<div className="header__container">
+
+
+<header className="header">
       <div className="header__container">
-        <Logo />
+      <Logo />
+      
         {isLoggedIn && headerMenu && (
           <>
+         
             <div
               className={
                 menu
@@ -42,8 +80,9 @@ function Header({ isLoggedIn }) {
                     : "header__menu-wrapper "
                 }
               >
+
                 <div className="header__menu">
-                  <Navigation onClick={handleOpenMenu} />
+                <Navigation onClick={handleOpenMenu} />
                   <AccountLink onClick={handleOpenMenu} />
                 </div>
               </div>
@@ -74,8 +113,22 @@ function Header({ isLoggedIn }) {
 export default Header;
 
 
-/*
+const [menu, setMenu] = useState();
+  const { pathname } = useLocation();
+  function handleOpenMenu() {
+    setMenu(!menu);
+  }
+
+  const headerMenu =
+    // pathname === "/" ||
+    pathname === "/movies" ||
+    pathname === "/saved-movies" ||
+    pathname === "/profile";
 
 
-<div className="header__container">
+
+
+
+
+
 */

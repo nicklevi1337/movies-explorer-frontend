@@ -26,7 +26,10 @@
   }
   
   .form-input__input:focus {
-    box-shadow: var(--focus-input);
+  /*  box-shadow: var(--focus-input);  */
+    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.3);
+   border: 2px solid transparent;
+       outline: none;
   }
   
   .form-input__input_valid_error {

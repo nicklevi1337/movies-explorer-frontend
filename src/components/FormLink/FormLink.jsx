@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function FormLink() {
   return (
     <nav className="formLink">
-      <Link to="/signup" className="formLink__link formLink__link_type_links">
+      <Link to="/signup" className="formLink__link formLink__link_type_link">
         Регистрация
       </Link>
       <Link to="/signin" className="formLink__link formLink__link_type_btn">
