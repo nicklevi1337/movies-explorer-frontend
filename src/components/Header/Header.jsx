@@ -1,6 +1,5 @@
 import React from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -17,7 +16,7 @@ function Header({ isLoggedIn }) {
   }
 
   const headerMenu =
-    // pathname === "/" ||
+    pathname === "/" ||
     pathname === "/movies" ||
     pathname === "/saved-movies" ||
     pathname === "/profile";
@@ -65,7 +64,7 @@ function Header({ isLoggedIn }) {
             ></button>
           </>
         )}
-        {isLoggedIn && pathname === "/" && <FormLink />}
+        {!isLoggedIn && pathname === "/" && <FormLink />}
       </div>
     </header>
   );

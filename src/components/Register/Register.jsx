@@ -1,9 +1,18 @@
-import { useState } from "react";
+//import { useState } from "react";
 import Form from "./../Form/Form";
 import FormInput from "../FormInput/FormInput";
+import useFormValidation from "./../../utils/useFormValidation";
+import { EMAIL_REG, NAME_REG } from "../../utils/constants";
 
-function Register({user}) {
-  const [isError, setError] = useState(true);
+function Register({ onRegister, isLoading }) {
+ // const [isError, setError] = useState(true);
+
+ const { values, errors, isValid, handleChange } = useFormValidation();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onRegister(values.name, values.email, values.password);
+  }
 
   return (
     <main className="register">
@@ -15,6 +24,11 @@ function Register({user}) {
         text="Уже зарегистрированы?"
         pathname="/signin"
         link="Войти"
+        onSubmit={handleSubmit}
+        isValid={isValid}
+        isLoading={isLoading}
+        loadingButtonText="Идет регистрация..."
+        autoComplete="off"
       >
         <FormInput
           title="Имя"
@@ -22,28 +36,38 @@ function Register({user}) {
           name="name"
           minLength="2"
           maxLength="30"
-          value={user.name}
+          autoComplete="off"
+          pattern={NAME_REG}
+          value={values.name || ""}
           placeholder="Введите имя"
-          error=""
+          onChange={handleChange}
+          error={errors.name}
+          isLoading={isLoading}
         />
         <FormInput
           title="E-mail"
           type="email"
           name="email"
-          value={user.email}
           placeholder="Введите e-mail"
-          error=""
+          autoComplete="off"
+          pattern={EMAIL_REG}
+          value={values.email || ""}
+          onChange={handleChange}
+          error={errors.email}
+          isLoading={isLoading}
         />
         <FormInput
-          isError={isError}
           title="Пароль"
           type="password"
           name="password"
           minLength="8"
           maxLength="20"
-          value={user.password}
+          autoComplete="off"
+          value={values.password || ""}
           placeholder="Введите пароль"
-          error="Пароль неверный"
+          error={errors.password}
+          isLoading={isLoading}
+          onChange={handleChange}
         />
       </Form>
     </main>
@@ -51,4 +75,3 @@ function Register({user}) {
 }
 
 export default Register;
-

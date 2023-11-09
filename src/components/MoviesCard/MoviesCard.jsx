@@ -1,6 +1,7 @@
 import "./MoviesCard.css";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import { MOVIES_API_URL } from "../../utils/constants";
 
 function MoviesCard({ movie }) {
   const { pathname } = useLocation();
@@ -13,6 +14,12 @@ function MoviesCard({ movie }) {
     setSavedMovie(!isSavedMovie);
   };
 
+  const convertDuration = (duration) => {
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+    return `${hours}ч ${minutes}м`;
+  };
+
   return (
     <li className="movies-card">
       <a
@@ -23,13 +30,19 @@ function MoviesCard({ movie }) {
       >
         <img
           className="movies-card__img"
-          src={movie.link}
-          alt={`Заставка для фильма "${movie.name}"`}
+          src={
+            pathname === "/movies"
+              ? `${MOVIES_API_URL}${movie.image.url}`
+              : `${movie.image}`
+          }
+          alt={`Заставка для фильма "${movie.nameRU}"`}
         />
         <div className="movies-card__caption">
-          <h2 className="movies-card__title">{movie.name}</h2>
+          <h2 className="movies-card__title">{movie.nameRU}</h2>
           <div className="movies-card__duration-wrapper">
-            <p className="movies-card__duration">{movie.duration}</p>
+            <p className="movies-card__duration">
+              {convertDuration(movie.duration)}
+            </p>
           </div>
         </div>
       </a>
