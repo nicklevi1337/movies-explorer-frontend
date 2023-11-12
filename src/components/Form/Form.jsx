@@ -1,12 +1,12 @@
 import "./Form.css";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../ui/Logo/Logo";
+import { REGISTER_ERROR, AUTH_ERROR } from "../../utils/constants";
 
 function Form({
   title,
   name,
   children,
-  error,
   buttonText,
   text,
   pathname,
@@ -16,6 +16,8 @@ function Form({
   isValid,
   isLoading,
   loadingButtonText,
+  registerError,
+  authError,
 }) {
   const location = useLocation();
 
@@ -28,7 +30,7 @@ function Form({
         action="#"
         name={name}
         noValidate
-        isValid={isValid}
+        disabled={!isValid}
         onSubmit={onSubmit}
         autoComplete={autoComplete}
       >
@@ -40,7 +42,10 @@ function Form({
               : "form-section__space form-section__space_two-input"
           }
         >
-          <span className="form-section__error"></span>
+          <span className="form-section__error">
+          {registerError ? `${REGISTER_ERROR}` : ''}
+            {authError ? `${AUTH_ERROR}` : ''}
+          </span>
         </div>
         <button
           type="submit"

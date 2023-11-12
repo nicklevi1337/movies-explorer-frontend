@@ -12,7 +12,7 @@ function Main({ user }) {
       <Promo />
       <AboutProject />
       <Techs />
-      <AboutMe user={user} />
+      <AboutMe/>
       <Portfolio />
       </main>
   );

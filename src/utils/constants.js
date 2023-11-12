@@ -1,4 +1,4 @@
-export const MOVIES_API_URL = "https://api.nomoreparties.co/beatfilm-movies";
+export const MOVIES_API_URL = "https://api.nomoreparties.co";
 export const MAIN_API_URL = "http://localhost:3000";
 export const EMAIL_REG = "^\\S+@\\S+\\.\\S+$";
 export const NAME_REG = "^[A-Za-zА-Яа-яЁё\\-\\s]+$";
@@ -16,3 +16,22 @@ export const INITIAL_SMALL_SCREEN_CARDS = 5;
 export const INCREASE_LARGE_SCREEN_CARDS = 3;
 export const INCREASE_MEDIUM_SCREEN_CARDS = 2;
 export const INCREASE_SMALL_SCREEN_CARDS = 1;
+
+// Ошибка страницы с фильмами
+export const SEARCH_QUERY_ERROR = 'Нужно ввести ключевое слово!';
+export const SEARCH_SERVER_ERROR = "Запрос не прошел. Возможно, проблема с соединением или сервер недоступен.";
+export const NOT_FOUND_MOVIES = "Страница не найдена!";
+
+
+// Ошибки регистрации
+export const REGISTER_ERROR = "Произошла ошибка регистрации!";
+
+// Ошибка входа
+export const AUTH_ERROR = "Произошла ошибка входа!";
+
+// Ошибка при изменение профиля
+export const PROFILE_ERROR = "Произошла ошибка! Не удалось изменить профиль!";
+
+//Ошибки страницы обновления профиля
+
+export const UPDATE_PROFILE_ERROR = 'При обновлении профиля произошла ошибка';

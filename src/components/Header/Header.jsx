@@ -2,7 +2,6 @@ import React from "react";
 import "./Header.css";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-
 import Navigation from "../Navigation/Navigation";
 import AccountLink from "../AccountLink/AccountLink";
 import FormLink from "../FormLink/FormLink";
@@ -11,6 +10,7 @@ import Logo from "./../ui/Logo/Logo";
 function Header({ isLoggedIn }) {
   const [menu, setMenu] = useState();
   const { pathname } = useLocation();
+  
   function handleOpenMenu() {
     setMenu(!menu);
   }

@@ -3,7 +3,7 @@ import FormInput from "../FormInput/FormInput";
 import useFormValidation from "../../utils/useFormValidation";
 import { EMAIL_REG } from "../../utils/constants";
 
-function Authorization({ onLogin, isLoading }) {
+function Authorization({ onLogin, isLoading, authError }) {
 
 const {values, errors, isValid, handleChange } = useFormValidation();
 
@@ -18,7 +18,7 @@ function handleSubmit(e) {
       <Form
         title="Рады видеть!"
         name="login-form"
-        error="При авторизации произошла ошибка."
+        authError={authError}
         buttonText="Войти"
         text="Еще не зарегистрированы?"
         pathname="/signup"

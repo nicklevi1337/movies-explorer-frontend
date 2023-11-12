@@ -4,21 +4,19 @@ import FormInput from "../FormInput/FormInput";
 import useFormValidation from "./../../utils/useFormValidation";
 import { EMAIL_REG, NAME_REG } from "../../utils/constants";
 
-function Register({ onRegister, isLoading }) {
- // const [isError, setError] = useState(true);
+function Register({ onRegister, isLoading, registerError }) {
 
  const { values, errors, isValid, handleChange } = useFormValidation();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    onRegister(values.name, values.email, values.password);
-  }
+ function handleSubmit(e) {
+  e.preventDefault();
+  onRegister(values.name, values.email, values.password);
+}
 
   return (
     <main className="register">
       <Form
         title="Добро пожаловать!"
-        error=""
         name="register-form"
         buttonText="Зарегистрироваться"
         text="Уже зарегистрированы?"
@@ -29,6 +27,7 @@ function Register({ onRegister, isLoading }) {
         isLoading={isLoading}
         loadingButtonText="Идет регистрация..."
         autoComplete="off"
+        registerError={registerError}
       >
         <FormInput
           title="Имя"

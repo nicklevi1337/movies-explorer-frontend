@@ -96,6 +96,21 @@
     color: #fff;
   }
 
+  .search__error {
+    display: block;
+    font-size: 11px;
+    margin: 15px 10px 0;
+    font-weight: 400;
+    color: #ff4062;
+    text-align: center;
+    min-height: 26px;
+    opacity: 0;
+  }
+  
+  .search__error_active {
+    opacity: 1;
+  }
+
   @media screen and (max-width: 860px) {
     .search {
       padding: 74px 0 80px;
