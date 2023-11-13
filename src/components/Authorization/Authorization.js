@@ -27,8 +27,8 @@ function handleSubmit(e) {
         isValid={isValid}
         isLoading={isLoading}
         loadingButtonText="Идет проверка..."
-        autoComplete="off"
-      >
+        autoComplete="off"   
+         >
         <FormInput
           title="E-mail"
           type="email"

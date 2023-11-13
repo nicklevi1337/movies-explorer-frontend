@@ -80,7 +80,7 @@ export const saveMovie = (movie, token) => {
       description: movie.description,
       year: movie.year,
       image: `${MOVIES_API_URL}${movie.image.url}`,
-      trailerLink: movie.trailerLink,
+      trailer: movie.trailerLink,
       thumbnail: `${MOVIES_API_URL}${movie.image.formats.thumbnail.url}`,
       movieId: movie.id,
       nameRU: movie.nameRU,

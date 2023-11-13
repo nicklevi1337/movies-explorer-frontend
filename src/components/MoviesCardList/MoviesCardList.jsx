@@ -16,17 +16,19 @@ function MoviesCardList({
   return (
     <section className="movies-card-list">
       {!localStorage.getItem("moviesSearchQuery") &&
+        movies &&
         movies.length === 0 &&
         null}
 
-      {isLoading && movies.length === 0 && <Preloader />}
+      {isLoading && movies && movies.length === 0 && <Preloader />}
 
-      {movies.length === 0 &&
+      {movies &&
+        movies.length === 0 &&
         !isLoading &&
         localStorage.getItem("moviesSearchQuery") && (
           <p className="movies-card-list__not-found">{NOT_FOUND_MOVIES}</p>
         )}
-      {pathname === "/movies" && movies.length !== 0 && (
+      {pathname === "/movies" && movies && movies.length !== 0 && (
         <ul className="movies-card-list__container">
           {movies.map((movie) => {
             return (
@@ -41,7 +43,7 @@ function MoviesCardList({
           })}
         </ul>
       )}
-      {pathname === "/saved-movies" && movies.length !== 0 && (
+      {pathname === "/saved-movies" && movies && movies.length !== 0 && (
         <ul className="movies-card-list__container">
           {movies.map((movie) => {
             return (
@@ -55,3 +57,7 @@ function MoviesCardList({
 }
 
 export default MoviesCardList;
+/*
+{pathname === "/movies" && movies.length !== 0 && (
+{pathname === "/saved-movies" && movies.length !== 0 && (
+*/

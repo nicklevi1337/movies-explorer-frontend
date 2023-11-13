@@ -120,6 +120,20 @@
     cursor    : auto;
 }
 
+.profile__input-error{
+    width: 100%;
+    color: #ff4062;
+    font-size: 10px;
+    font-weight: 400;
+    min-height: 23px;
+    line-height: 1;
+    display: flex;
+    margin: 2px 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 @media screen and (max-width: 768px) {
     .profile {
         margin: 236px auto 269px;

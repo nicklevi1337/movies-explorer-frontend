@@ -15,7 +15,7 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
     } else {
       setSavedMovie(true);
       onChangeSave(movie);
-      console.log(movie.id);
+     // console.log(movie.id);
     }
   };
 

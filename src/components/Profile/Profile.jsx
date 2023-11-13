@@ -33,8 +33,10 @@ function Profile({
 
   function handleSubmit(e) {
     e.preventDefault();
-    onUpdate(values.name, values.email);
+    onUpdate(values);
   }
+
+
   /*
   const handleClickEditProfile = () => {
     setEditProfile(true);
@@ -65,34 +67,31 @@ function Profile({
                 placeholder="Введите имя"
                 minLength="2"
                 maxLength="30"
-                id="name-id"
-                error={errors.name}
-                value={!isEditingProfile ? currentUser.name : values.name || ""}
+                value={!isEditingProfile ? currentUser.name : (values.name || "")}
                 onChange={handleChange}
                 disabled={!isEditingProfile || isNewEntranceOnPage}
                 pattern={NAME_REG}
                 required
               />
-              <span className="profile__input-error">{errors.name}</span>
+              
             </label>
+            <span className="profile__input-error">{errors.name}</span>
 
             <label className="profile__input-container profile__input-container_type_email">
-              <span className="profile__text">E-mail</span>
+              <span className="profile__text" >E-mail</span>
               <input
                 className="profile__text profile__text_input"
                 type="email"
                 name="email"
                 placeholder="Укажите e-mail"
-                id="email-id"
-                error={errors.email}
-                value={values.email || ""}
+                value={!isEditingProfile ? currentUser.email : (values.email || "")}
                 onChange={handleChange}
-                disabled={!isEditingProfile}
+                disabled={!isEditingProfile || isNewEntranceOnPage}
                 pattern={EMAIL_REG}
                 required
               />
-              <span className="profile__input-error">{errors.email}</span>
             </label>
+            <span className="profile__input-error">{errors.email}</span>
           </div>
 
           <div className="profile__btns">
