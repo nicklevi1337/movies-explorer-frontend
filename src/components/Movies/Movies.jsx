@@ -8,19 +8,20 @@ import {
   LARGE_SCREEN_WIDTH,
   MEDIUM_SCREEN_WIDTH,
   SMALL_SCREEN_WIDTH,
+  // SEARCH_FILTER_ERROR,
 } from "./../../utils/constants";
 
 function Movies({ onChangeSave, onDelete, savedMovies }) {
   const [foundCards, setFoundCards] = useState([]);
   const [isFilterOn, setFilter] = useState(false);
   const [moviesRender, setRenderMovies] = useState([]);
-  const [inputSearchValue, setInputSearchValue] = useState([]);
+  const [inputSearchValue, setInputSearchValue] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [serverError, setServerError] = useState(false);
   const [count, setCount] = useState(renderMoreMovies().initial);
-
+  const [firstEntrance, setFirstEntrance] = useState(true);
   const visibleMovies = moviesRender.slice(0, count);
-/*
+  /*
   function renderMoreMovies() {
     let counter = { initial: 12, increase: 4 };
     if (window.innerWidth <= 768) {
@@ -48,6 +49,7 @@ function Movies({ onChangeSave, onDelete, savedMovies }) {
 
   const handleSubmitSearchRequest = useCallback(
     (searchQuery) => {
+      setFirstEntrance(false);
       const storedAllMovies = localStorage.getItem("allMovies");
       if (!storedAllMovies) {
         setLoading(true);
@@ -73,10 +75,13 @@ function Movies({ onChangeSave, onDelete, savedMovies }) {
     [searchAndFilterMovies, isFilterOn]
   );
 
-
-  const handleOnFilterClick = useCallback(
-    (isFilterOn) => {
+  const handleOnFilterClick = useCallback(() => {
+    if (!firstEntrance) {
       setFilter(isFilterOn);
+      const searchQuery = JSON.parse(localStorage.getItem("moviesSearchQuery"));
+      const allMovies = JSON.parse(localStorage.getItem("allMovies"));
+      const found = search(allMovies, searchQuery);
+      setFoundCards(found);
       if (localStorage.getItem("moviesSearchQuery")) {
         if (isFilterOn) {
           const filtered = filter(foundCards, isFilterOn);
@@ -84,19 +89,16 @@ function Movies({ onChangeSave, onDelete, savedMovies }) {
           localStorage.setItem("foundMovies", JSON.stringify(filtered));
           localStorage.setItem("filterState", JSON.stringify(isFilterOn));
         } else {
-          const allMovies = JSON.parse(localStorage.getItem("allMovies"));
-          const searchQuery = JSON.parse(
-            localStorage.getItem("moviesSearchQuery")
-          );
-          const found = search(allMovies, searchQuery);
           setRenderMovies(found);
           localStorage.setItem("foundMovies", JSON.stringify(found));
           localStorage.setItem("filterState", JSON.stringify(isFilterOn));
         }
       }
-    },
-    [foundCards]
-  );
+    } else {
+      setFilter(isFilterOn);
+    }
+  }, [foundCards, firstEntrance]);
+
 
   function openMoreMovies() {
     setCount(count + renderMoreMovies().increase);
@@ -143,6 +145,14 @@ function Movies({ onChangeSave, onDelete, savedMovies }) {
     }
   }, []);
 
+  useEffect(() => {
+    if (!localStorage.getItem("allMovies")) {
+      setFirstEntrance(true);
+    } else {
+      setFirstEntrance(false);
+    }
+  }, [])
+
   return (
     <main className="movies">
       <SearchForm
@@ -164,7 +174,7 @@ function Movies({ onChangeSave, onDelete, savedMovies }) {
         <button
           type="button"
           className={`movies__btn-more ${
-            (count >= moviesRender.length) &&  "movies__btn-more_hidden"
+            count >= moviesRender.length && "movies__btn-more_hidden"
           }`}
           onClick={openMoreMovies}
         >

@@ -1,12 +1,17 @@
 import "./MoviesCard.css";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MOVIES_API_URL } from "../../utils/constants";
 
 function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
   const { pathname } = useLocation();
 
   const [isSavedMovie, setSavedMovie] = useState(false);
+
+  useEffect(() => {
+    if (pathname === '/movies')
+    setSavedMovie(savedMovies.some(element => movie.id === element.movieId))
+  }, [savedMovies, movie.id, setSavedMovie, pathname])
 
   const handleSave = () => {
     if (savedMovies.some((element) => movie.id === element.movieId)) {
@@ -15,7 +20,7 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
     } else {
       setSavedMovie(true);
       onChangeSave(movie);
-     // console.log(movie.id);
+     
     }
   };
 
@@ -24,8 +29,9 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
   };
 
   const convertDuration = (duration) => {
-    const hours = Math.floor(duration / 60);
-    const minutes = duration % 60;
+    const durationInMinutes = parseInt(duration, 10); 
+    const hours = Math.floor(durationInMinutes / 60);
+    const minutes = durationInMinutes % 60;
     return `${hours}ч ${minutes}м`;
   };
 

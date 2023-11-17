@@ -6,6 +6,7 @@ import {
   EMAIL_REG,
   NAME_REG,
   UPDATE_PROFILE_ERROR,
+  SUCCESS_NOTIFICATION,
 } from "../../utils/constants";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 
@@ -17,6 +18,7 @@ function Profile({
   updateError,
   isEditingProfile,
   isNewEntranceOnPage,
+  success,
 }) {
   //  const [isEditProfile, setEditProfile] = useState(false);
 
@@ -92,7 +94,9 @@ function Profile({
               />
             </label>
             <span className="profile__input-error">{errors.email}</span>
+            <span className="profile__success">{success ? `${SUCCESS_NOTIFICATION}` : ''}</span>
           </div>
+
 
           <div className="profile__btns">
             <span className="profile__error">

@@ -35,3 +35,5 @@ export const PROFILE_ERROR = "Произошла ошибка! Не удалос
 //Ошибки страницы обновления профиля
 
 export const UPDATE_PROFILE_ERROR = 'При обновлении профиля произошла ошибка';
+
+export const SUCCESS_NOTIFICATION = "Данные обновлены успешно";

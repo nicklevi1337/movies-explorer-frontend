@@ -4,18 +4,18 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { SEARCH_SERVER_ERROR, SEARCH_QUERY_ERROR } from "../../utils/constants";
 
 function SearchForm({
-  onSearch,
-  inputValue,
-  isFilterOn,
-  onFilterChange,
-  isLoading,
+  onSearch, 
+  inputValue, 
+  isFilterOn, 
+  onFilterChange, 
+  isLoading, 
   serverError,
 }) {
   const [searchInputValue, setSearchInputValue] = useState("");
   const [searchError, setSearchError] = useState("");
 
   useEffect(() => {
-    setSearchInputValue(inputValue);
+    setSearchInputValue(inputValue || "");;
     setSearchError("");
   }, [inputValue]);
 

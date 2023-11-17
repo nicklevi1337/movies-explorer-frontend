@@ -4,6 +4,7 @@ import "./App.css";
 import Main from "../Main/Main";
 import Header from "./../Header/Header";
 import Authorization from "./../Authorization/Authorization";
+import Preloader from "../Preloader/Preloader";
 import Register from "./../Register/Register";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.jsx";
 import { CurrentUserContext } from "./../../context/CurrentUserContext.jsx";
@@ -17,7 +18,8 @@ import {
   login,
   updateUserInfo,
   getProfileInfo,
-  getContent,
+  getMovies,
+//  getContent,
   saveMovie,
   deleteMovie,
 } from "../../utils/MainApi.js";
@@ -36,6 +38,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isNewEntranceOnPage, setNewEntranceOnPage] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [success, setSuccess] = useState(false);
+  const [isCheckToken, setIsCheckToken] = useState(true)
 
   const footer =
     pathname === "/" || pathname === "/movies" || pathname === "/saved-movies";
@@ -45,6 +49,9 @@ function App() {
     pathname === "/movies" ||
     pathname === "/saved-movies" ||
     pathname === "/profile";
+
+    const registerPage = pathname === "/signup"
+    const loginPage = pathname === "/signin"
 
   //Вход
   function handleLogin(email, password) {
@@ -92,9 +99,11 @@ function App() {
         setEditingProfile(false);
         setUpdateError(false);
         setCurrentUser(dataUser);
+        setSuccess(true);
       })
       .catch((err) => {
         setUpdateError(true);
+        setSuccess(false);
         console.error(err);
       })
       .finally(() => setLoading(false));
@@ -144,56 +153,60 @@ function App() {
   function handleClickEditProfile() {
     setEditingProfile(true);
     setNewEntranceOnPage(false);
+    setSuccess(false);
   }
 
   function handleEntranceOnProfile() {
     setNewEntranceOnPage(true);
+    setEditingProfile(false);
+
   }
 
+useEffect(() => {
+  if (isLoggedIn) {
+    const token = localStorage.getItem('token');
+    Promise.all([getProfileInfo(token), getMovies(token)])
+    .then(([dataUser, dataCards]) => {
+      setCurrentUser(dataUser);
+      setSavedMovies(dataCards);
+    })
+    .catch(console.error);
+  }
+}, [isLoggedIn]);
 
-
-
-
-  //Получение данных пользователя, если залогинился
-  useEffect(() => {
-    if (isLoggedIn) {
-      const token = localStorage.getItem("token");
-      getProfileInfo(token)
-        .then((dataUser) => {
-          setCurrentUser(dataUser);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [isLoggedIn]);
 
   //Проверка токена при загрузке страницы
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      getContent(token)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            if (pathname === "/signup" || pathname === "/signin") {
-              navigate('/movies', {replace: true})
-            }
-          }
-        })
-        .catch(console.error);
+      getProfileInfo(token)
+      .then((res) => {
+        if(res) {
+          setLoggedIn(true);
+        }
+      })
+      .catch(console.error)
+      .finally(() => setIsCheckToken(false))
     } else {
       setLoggedIn(false);
       localStorage.clear();
+      setIsCheckToken(false);
     }
-  }, [navigate, pathname]);
+  }, []);
 
 
-
+  useEffect(() => {
+    if (isLoggedIn && (registerPage || loginPage)) {
+      navigate("/movies");
+    }
+  }, [navigate, isLoggedIn, pathname, registerPage, loginPage]);
 
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <div className="app__content">
+      {isCheckToken 
+      ? (<Preloader />) 
+      : (<CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         {header && (
           <Header
@@ -240,6 +253,92 @@ function App() {
                 updateError={updateError}
                 isEditingProfile={isEditingProfile}
                 isNewEntranceOnPage={isNewEntranceOnPage}
+                success={success}
+              />
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <Register
+                onRegister={handleRegister}
+                isLoading={isLoading}
+                registerError={registerError}
+              />
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <Authorization
+                onLogin={handleLogin}
+                isLoading={isLoading}
+                loginError={loginError}
+              />
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        {footer && <Footer />}
+      </div>
+    </CurrentUserContext.Provider>)}
+    </div>
+      );
+    }
+
+export default App;
+
+
+/*
+
+<CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        {header && (
+          <Header
+            isLoggedIn={isLoggedIn}
+            newEntrance={handleEntranceOnProfile}
+          />
+        )}
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route
+            path="/movies"
+            element={
+              <ProtectedRouteElement
+                loggedIn={isLoggedIn}
+                element={Movies}
+                onChangeSave={handleChangeSaveStatus}
+                onDelete={handleDeleteMovie}
+                savedMovies={savedMovies}
+              />
+            }
+          />
+          <Route
+            path="/saved-movies"
+            element={
+              <ProtectedRouteElement
+                loggedIn={isLoggedIn}
+                element={SavedMovies}
+                onDelete={handleDeleteMovie}
+                savedMovies={savedMovies}
+              />
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRouteElement
+                loggedIn={isLoggedIn}
+                element={Profile}
+                onEditProfile={handleClickEditProfile}
+                onLogout={handleLogout}
+                onUpdate={handleUpdateUser}
+                isLoading={isLoading}
+                updateError={updateError}
+                isEditingProfile={isEditingProfile}
+                isNewEntranceOnPage={isNewEntranceOnPage}
+                success={success}
               />
             }
           />
@@ -268,7 +367,5 @@ function App() {
         {footer && <Footer />}
       </div>
     </CurrentUserContext.Provider>
-  );
-}
 
-export default App;
+*/
