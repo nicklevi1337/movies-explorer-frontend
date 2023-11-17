@@ -8,7 +8,6 @@ import {
   LARGE_SCREEN_WIDTH,
   MEDIUM_SCREEN_WIDTH,
   SMALL_SCREEN_WIDTH,
-  // SEARCH_FILTER_ERROR,
 } from "./../../utils/constants";
 
 function Movies({ onChangeSave, onDelete, savedMovies }) {
@@ -21,18 +20,6 @@ function Movies({ onChangeSave, onDelete, savedMovies }) {
   const [count, setCount] = useState(renderMoreMovies().initial);
   const [firstEntrance, setFirstEntrance] = useState(true);
   const visibleMovies = moviesRender.slice(0, count);
-  /*
-  function renderMoreMovies() {
-    let counter = { initial: 12, increase: 4 };
-    if (window.innerWidth <= 768) {
-      counter = { initial: 8, increase: 4 };
-    }
-    if (window.innerWidth <= 450) {
-      counter = { initial: 5, increase: 2 };
-    }
-    return counter;
-  }
-*/
 
   const searchAndFilterMovies = useCallback(
     (dataMovies, keyWord, isFilterOn) => {

@@ -4,18 +4,18 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { SEARCH_SERVER_ERROR, SEARCH_QUERY_ERROR } from "../../utils/constants";
 
 function SearchForm({
-  onSearch, 
-  inputValue, 
-  isFilterOn, 
-  onFilterChange, 
-  isLoading, 
+  onSearch,
+  inputValue,
+  isFilterOn,
+  onFilterChange,
+  isLoading,
   serverError,
 }) {
   const [searchInputValue, setSearchInputValue] = useState("");
   const [searchError, setSearchError] = useState("");
 
   useEffect(() => {
-    setSearchInputValue(inputValue || "");;
+    setSearchInputValue(inputValue || "");
     setSearchError("");
   }, [inputValue]);
 
@@ -55,20 +55,27 @@ function SearchForm({
           <button
             className={`search__btn${isLoading ? "search__btn_disable" : ""}`}
             type="submit"
-            disabled={isLoading ? true : false}>
-          </button>
+            disabled={isLoading ? true : false}
+          ></button>
         </div>
         <div className="search__filter-container">
-          <FilterCheckbox sFilterOn={isFilterOn} onFilterChange={onFilterChange} />
+          <FilterCheckbox
+            sFilterOn={isFilterOn}
+            onFilterChange={onFilterChange}
+          />
           <p className="search__filter-title">Короткометражки</p>
         </div>
       </form>
-      {serverError 
-        ? 
-        <span className="search__error search__error_active"> {SEARCH_SERVER_ERROR} </span> 
-        :
-        <span className="search__error search__error_active">{searchError}</span>
-      }
+      {serverError ? (
+        <span className="search__error search__error_active">
+          {" "}
+          {SEARCH_SERVER_ERROR}{" "}
+        </span>
+      ) : (
+        <span className="search__error search__error_active">
+          {searchError}
+        </span>
+      )}
     </section>
   );
 }

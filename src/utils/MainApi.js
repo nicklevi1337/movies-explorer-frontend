@@ -55,16 +55,15 @@ export const getProfileInfo = (token) => {
 };
 export const getMovies = (token) => {
   return fetch(`${MAIN_API_URL}/movies`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    }
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   })
-  .then(res => checkResponse(res))
-  .then(data => data)
+    .then((res) => checkResponse(res))
+    .then((data) => data);
 };
-
 
 export const saveMovie = (movie, token) => {
   return fetch(`${MAIN_API_URL}/movies`, {
