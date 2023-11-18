@@ -1,0 +1,39 @@
+
+.accountLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.14;
+    background-color: #313131;
+    border-radius: 8px;
+    width: 100px;
+    height: 32px;
+    
+  }
+  
+  .accountLink__link {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    gap: 13px;
+    align-items: center;
+    transition: var(--transition);
+  }
+  
+  .accountLink__link:hover {
+    opacity: var(--link-opacity);
+  }
+  
+  
+
+  
+  @media screen and (max-width: 768px) {
+    .accountLink {
+      margin: 0;
+      justify-content: center;
+    }
+  
+
+  }
