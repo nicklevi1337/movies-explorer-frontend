@@ -43,17 +43,18 @@ function Form({
           }
         >
           <span className="form-section__error">
-          {registerError ? `${REGISTER_ERROR}` : ''}
-            {authError ? `${AUTH_ERROR}` : ''}
+            {registerError ? `${REGISTER_ERROR}` : ""}
+            {authError ? `${AUTH_ERROR}` : ""}
           </span>
         </div>
         <button
           type="submit"
-         
-          className={`form-section__btn ${!isValid || isLoading ? `form-section__btn_disabled`: '' }`}
+          className={`form-section__btn ${
+            !isValid || isLoading ? `form-section__btn_disabled` : ""
+          }`}
           disabled={!isValid || isLoading}
         >
-           {!isLoading ? `${buttonText}` : `${loadingButtonText}`}
+          {!isLoading ? `${buttonText}` : `${loadingButtonText}`}
         </button>
         <p className="form-section__text">
           {`${text} `}
@@ -67,20 +68,3 @@ function Form({
 }
 
 export default Form;
-
-/*
-        
-
-
-{/* <span className="form-section__error form-section__error_hidden">
-              Ошибка при авторизации
-            </span> 
-
-/* <button
-              type="submit"
-              className="form-section__btn form-section__btn_disabled"
-            >
-              {buttonText}
-            </button> 
-
-*/

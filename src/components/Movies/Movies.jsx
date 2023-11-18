@@ -86,7 +86,6 @@ function Movies({ onChangeSave, onDelete, savedMovies }) {
     }
   }, [foundCards, firstEntrance]);
 
-
   function openMoreMovies() {
     setCount(count + renderMoreMovies().increase);
   }
@@ -138,7 +137,7 @@ function Movies({ onChangeSave, onDelete, savedMovies }) {
     } else {
       setFirstEntrance(false);
     }
-  }, [])
+  }, []);
 
   return (
     <main className="movies">

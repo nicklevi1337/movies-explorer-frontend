@@ -16,7 +16,7 @@ function FormInput({
 }) {
   return (
     <label className="form-input">
-       <span className="form-input__caption">{title}</span>
+      <span className="form-input__caption">{title}</span>
       <input
         className={`form-input__input ${
           error ? "form-input__input_valid_error" : ""

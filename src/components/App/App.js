@@ -19,7 +19,7 @@ import {
   updateUserInfo,
   getProfileInfo,
   getMovies,
-//  getContent,
+  //  getContent,
   saveMovie,
   deleteMovie,
 } from "../../utils/MainApi.js";
@@ -39,7 +39,7 @@ function App() {
   const [isNewEntranceOnPage, setNewEntranceOnPage] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [success, setSuccess] = useState(false);
-  const [isCheckToken, setIsCheckToken] = useState(true)
+  const [isCheckToken, setIsCheckToken] = useState(true);
 
   const footer =
     pathname === "/" || pathname === "/movies" || pathname === "/saved-movies";
@@ -50,8 +50,8 @@ function App() {
     pathname === "/saved-movies" ||
     pathname === "/profile";
 
-    const registerPage = pathname === "/signup"
-    const loginPage = pathname === "/signin"
+  const registerPage = pathname === "/signup";
+  const loginPage = pathname === "/signin";
 
   //Вход
   function handleLogin(email, password) {
@@ -86,7 +86,7 @@ function App() {
       })
       .catch((err) => {
         setRegisterError(true);
-       console.error(err);
+        console.error(err);
       })
       .finally(() => setLoading(false));
   }
@@ -160,34 +160,32 @@ function App() {
     setNewEntranceOnPage(true);
     setEditingProfile(false);
     setSuccess(false);
-
   }
 
-useEffect(() => {
-  if (isLoggedIn) {
-    const token = localStorage.getItem('token');
-    Promise.all([getProfileInfo(token), getMovies(token)])
-    .then(([dataUser, dataCards]) => {
-      setCurrentUser(dataUser);
-      setSavedMovies(dataCards);
-    })
-    .catch(console.error);
-  }
-}, [isLoggedIn]);
-
+  useEffect(() => {
+    if (isLoggedIn) {
+      const token = localStorage.getItem("token");
+      Promise.all([getProfileInfo(token), getMovies(token)])
+        .then(([dataUser, dataCards]) => {
+          setCurrentUser(dataUser);
+          setSavedMovies(dataCards);
+        })
+        .catch(console.error);
+    }
+  }, [isLoggedIn]);
 
   //Проверка токена при загрузке страницы
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       getProfileInfo(token)
-      .then((res) => {
-        if(res) {
-          setLoggedIn(true);
-        }
-      })
-      .catch(console.error)
-      .finally(() => setIsCheckToken(false))
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+          }
+        })
+        .catch(console.error)
+        .finally(() => setIsCheckToken(false));
     } else {
       setLoggedIn(false);
       localStorage.clear();
@@ -195,178 +193,96 @@ useEffect(() => {
     }
   }, []);
 
-
   useEffect(() => {
     if (isLoggedIn && (registerPage || loginPage)) {
       navigate("/movies");
     }
   }, [navigate, isLoggedIn, pathname, registerPage, loginPage]);
 
-
   return (
     <div className="app__content">
-      {isCheckToken 
-      ? (<Preloader />) 
-      : (<CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
-        {header && (
-          <Header
-            isLoggedIn={isLoggedIn}
-            newEntrance={handleEntranceOnProfile}
-          />
-        )}
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRouteElement
-                loggedIn={isLoggedIn}
-                element={Movies}
-                onChangeSave={handleChangeSaveStatus}
-                onDelete={handleDeleteMovie}
-                savedMovies={savedMovies}
+      {isCheckToken ? (
+        <Preloader />
+      ) : (
+        <CurrentUserContext.Provider value={currentUser}>
+          <div className="page">
+            {header && (
+              <Header
+                isLoggedIn={isLoggedIn}
+                newEntrance={handleEntranceOnProfile}
               />
-            }
-          />
-          <Route
-            path="/saved-movies"
-            element={
-              <ProtectedRouteElement
-                loggedIn={isLoggedIn}
-                element={SavedMovies}
-                onDelete={handleDeleteMovie}
-                savedMovies={savedMovies}
+            )}
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route
+                path="/movies"
+                element={
+                  <ProtectedRouteElement
+                    loggedIn={isLoggedIn}
+                    element={Movies}
+                    onChangeSave={handleChangeSaveStatus}
+                    onDelete={handleDeleteMovie}
+                    savedMovies={savedMovies}
+                  />
+                }
               />
-            }
-          />
+              <Route
+                path="/saved-movies"
+                element={
+                  <ProtectedRouteElement
+                    loggedIn={isLoggedIn}
+                    element={SavedMovies}
+                    onDelete={handleDeleteMovie}
+                    savedMovies={savedMovies}
+                  />
+                }
+              />
 
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRouteElement
-                loggedIn={isLoggedIn}
-                element={Profile}
-                onEditProfile={handleClickEditProfile}
-                onLogout={handleLogout}
-                onUpdate={handleUpdateUser}
-                isLoading={isLoading}
-                updateError={updateError}
-                isEditingProfile={isEditingProfile}
-                isNewEntranceOnPage={isNewEntranceOnPage}
-                success={success}
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRouteElement
+                    loggedIn={isLoggedIn}
+                    element={Profile}
+                    onEditProfile={handleClickEditProfile}
+                    onLogout={handleLogout}
+                    onUpdate={handleUpdateUser}
+                    isLoading={isLoading}
+                    updateError={updateError}
+                    isEditingProfile={isEditingProfile}
+                    isNewEntranceOnPage={isNewEntranceOnPage}
+                    success={success}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <Register
-                onRegister={handleRegister}
-                isLoading={isLoading}
-                registerError={registerError}
+              <Route
+                path="/signup"
+                element={
+                  <Register
+                    onRegister={handleRegister}
+                    isLoading={isLoading}
+                    registerError={registerError}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="/signin"
-            element={
-              <Authorization
-                onLogin={handleLogin}
-                isLoading={isLoading}
-                loginError={loginError}
+              <Route
+                path="/signin"
+                element={
+                  <Authorization
+                    onLogin={handleLogin}
+                    isLoading={isLoading}
+                    loginError={loginError}
+                  />
+                }
               />
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        {footer && <Footer />}
-      </div>
-    </CurrentUserContext.Provider>)}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            {footer && <Footer />}
+          </div>
+        </CurrentUserContext.Provider>
+      )}
     </div>
-      );
-    }
+  );
+}
 
 export default App;
-
-
-/*
-
-<CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
-        {header && (
-          <Header
-            isLoggedIn={isLoggedIn}
-            newEntrance={handleEntranceOnProfile}
-          />
-        )}
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRouteElement
-                loggedIn={isLoggedIn}
-                element={Movies}
-                onChangeSave={handleChangeSaveStatus}
-                onDelete={handleDeleteMovie}
-                savedMovies={savedMovies}
-              />
-            }
-          />
-          <Route
-            path="/saved-movies"
-            element={
-              <ProtectedRouteElement
-                loggedIn={isLoggedIn}
-                element={SavedMovies}
-                onDelete={handleDeleteMovie}
-                savedMovies={savedMovies}
-              />
-            }
-          />
-
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRouteElement
-                loggedIn={isLoggedIn}
-                element={Profile}
-                onEditProfile={handleClickEditProfile}
-                onLogout={handleLogout}
-                onUpdate={handleUpdateUser}
-                isLoading={isLoading}
-                updateError={updateError}
-                isEditingProfile={isEditingProfile}
-                isNewEntranceOnPage={isNewEntranceOnPage}
-                success={success}
-              />
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <Register
-                onRegister={handleRegister}
-                isLoading={isLoading}
-                registerError={registerError}
-              />
-            }
-          />
-          <Route
-            path="/signin"
-            element={
-              <Authorization
-                onLogin={handleLogin}
-                isLoading={isLoading}
-                loginError={loginError}
-              />
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        {footer && <Footer />}
-      </div>
-    </CurrentUserContext.Provider>
-
-*/

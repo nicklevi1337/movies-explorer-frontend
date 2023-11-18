@@ -70,7 +70,3 @@ function MoviesCardList({
 }
 
 export default MoviesCardList;
-/*
-{pathname === "/movies" && movies.length !== 0 && (
-{pathname === "/saved-movies" && movies.length !== 0 && (
-*/

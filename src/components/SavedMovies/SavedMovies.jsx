@@ -61,9 +61,9 @@ function SavedMovies({ onDelete, savedMovies }) {
         }
       }
     },
-    [foundCards, savedMovies, inputSearchValue],
+    [foundCards, savedMovies, inputSearchValue]
   );
-  
+
   useEffect(() => {
     if (foundCards.length) {
       searchAndFilterMovies(savedMovies, inputSearchValue, isFilterOn);

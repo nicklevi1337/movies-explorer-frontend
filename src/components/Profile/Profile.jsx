@@ -19,7 +19,6 @@ function Profile({
   isNewEntranceOnPage,
   success,
 }) {
-
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidation();
   const currentUser = useContext(CurrentUserContext);

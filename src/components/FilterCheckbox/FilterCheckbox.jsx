@@ -6,7 +6,7 @@ function FilterCheckbox({ isFilter, onFilterChange }) {
       <input
         type="checkbox"
         className="checkbox__input"
-        cheсked={isFilter}
+        checked={isFilter}
         onChange={(evt) => onFilterChange(evt.target.checked)}
         name="checkbox"
       />

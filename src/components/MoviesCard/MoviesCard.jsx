@@ -9,9 +9,11 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
   const [isSavedMovie, setSavedMovie] = useState(false);
 
   useEffect(() => {
-    if (pathname === '/movies')
-    setSavedMovie(savedMovies.some(element => movie.id === element.movieId))
-  }, [savedMovies, movie.id, setSavedMovie, pathname])
+    if (pathname === "/movies")
+      setSavedMovie(
+        savedMovies.some((element) => movie.id === element.movieId)
+      );
+  }, [savedMovies, movie.id, setSavedMovie, pathname]);
 
   const handleSave = () => {
     if (savedMovies.some((element) => movie.id === element.movieId)) {
@@ -20,7 +22,6 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
     } else {
       setSavedMovie(true);
       onChangeSave(movie);
-     
     }
   };
 
@@ -29,7 +30,7 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
   };
 
   const convertDuration = (duration) => {
-    const durationInMinutes = parseInt(duration, 10); 
+    const durationInMinutes = parseInt(duration, 10);
     const hours = Math.floor(durationInMinutes / 60);
     const minutes = durationInMinutes % 60;
     return `${hours}ч ${minutes}м`;
@@ -74,9 +75,8 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
         >
           {!isSavedMovie ? "Сохранить" : ""}
         </button>
-      )
-      }
-     {(pathname === '/saved-movies') && (
+      )}
+      {pathname === "/saved-movies" && (
         <button
           className="movies-card__btn movies-card__btn_type_delete"
           type="button"
