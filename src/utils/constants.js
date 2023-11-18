@@ -17,7 +17,7 @@ export const INITIAL_SMALL_SCREEN_CARDS = 5;
 
 export const INCREASE_LARGE_SCREEN_CARDS = 3;
 export const INCREASE_MEDIUM_SCREEN_CARDS = 2;
-export const INCREASE_SMALL_SCREEN_CARDS = 1;
+export const INCREASE_SMALL_SCREEN_CARDS = 2;
 
 // Ошибка страницы с фильмами
 export const SEARCH_QUERY_ERROR = 'Нужно ввести ключевое слово!';

@@ -159,6 +159,7 @@ function App() {
   function handleEntranceOnProfile() {
     setNewEntranceOnPage(true);
     setEditingProfile(false);
+    setSuccess(false);
 
   }
 

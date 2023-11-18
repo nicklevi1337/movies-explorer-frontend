@@ -8,9 +8,8 @@ function SavedMovies({ onDelete, savedMovies }) {
   const [moviesForRender, setMoviesForRender] = useState(savedMovies);
   const [foundCards, setFoundCards] = useState([]);
   const [isFilterOn, setFilter] = useState(false);
-  const [inputSearchValue, setInputSearchValue] = useState('');
+  const [inputSearchValue, setInputSearchValue] = useState("");
   const [firstSavedEntrance, setFirstSavedEntrance] = useState(true);
-
 
   useEffect(() => {
     setMoviesForRender(savedMovies);
@@ -24,16 +23,13 @@ function SavedMovies({ onDelete, savedMovies }) {
     }
   }, [savedMovies]);
 
-
   // поиск и фильтрация фильмов
   const searchAndFilterMovies = useCallback(
     (savedMovies, keyWord, isFilterOn) => {
       setInputSearchValue(keyWord);
       const found = search(savedMovies, keyWord);
       setFoundCards(found);
-      // console.log(found);
       const filteredMovies = filter(found, isFilterOn);
-      console.log(filteredMovies);
       setMoviesForRender(filteredMovies);
     },
     []
@@ -48,30 +44,37 @@ function SavedMovies({ onDelete, savedMovies }) {
     [searchAndFilterMovies, savedMovies, isFilterOn]
   );
 
-  const handleOnFilterClick = useCallback((isFilterOn) => {
-    setFilter(isFilterOn);
-    console.log('nen');
-    if (!foundCards.length) {
-      if (isFilterOn) {
-        const filtered = filter(savedMovies, isFilterOn);
-        setMoviesForRender(filtered);
-        console.log('выводим сохраненные короткометражки');
+  const handleOnFilterClick = useCallback(
+    (isFilterOn) => {
+      setFilter(isFilterOn);
+      if (!foundCards.length) {
+        if (!inputSearchValue) {
+          const filtered = filter(savedMovies, isFilterOn);
+          setMoviesForRender(filtered);
+        }
       } else {
-        setMoviesForRender(savedMovies);
-        console.log('выводим сохраненные все');
+        if (isFilterOn) {
+          const filtered = filter(foundCards, isFilterOn);
+          setMoviesForRender(filtered);
+        } else {
+          setMoviesForRender(foundCards);
+        }
       }
-    } else {
-      if (isFilterOn) {
-        const filtered = filter(foundCards, isFilterOn);
-        setMoviesForRender(filtered);
-        console.log('выводим короткометражки по запросу');
-      } else {
-        setMoviesForRender(foundCards);
-        console.log('выводим запрос');
-      }
+    },
+    [foundCards, savedMovies, inputSearchValue],
+  );
+  
+  useEffect(() => {
+    if (foundCards.length) {
+      searchAndFilterMovies(savedMovies, inputSearchValue, isFilterOn);
     }
-  }, [foundCards, savedMovies])
-
+  }, [
+    savedMovies,
+    foundCards.length,
+    inputSearchValue,
+    isFilterOn,
+    searchAndFilterMovies,
+  ]);
 
   return (
     <main className="saved-movies">
@@ -79,13 +82,13 @@ function SavedMovies({ onDelete, savedMovies }) {
         onSearch={handleSubmitSearch}
         savedMovies={savedMovies}
         inputValue={inputSearchValue}
-        onFilterChange={handleOnFilterClick} 
+        onFilterChange={handleOnFilterClick}
         isFilterOn={isFilterOn}
       />
       <MoviesCardList
-         movies={moviesForRender}
-         onDelete={onDelete}
-         firstSavedEntrance={firstSavedEntrance}
+        movies={moviesForRender}
+        onDelete={onDelete}
+        firstSavedEntrance={firstSavedEntrance}
       />
     </main>
   );

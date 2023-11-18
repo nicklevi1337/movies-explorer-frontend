@@ -1,4 +1,3 @@
-//import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import "./Profile.css";
 import useFormValidation from "./../../utils/useFormValidation";
@@ -20,15 +19,18 @@ function Profile({
   isNewEntranceOnPage,
   success,
 }) {
-  //  const [isEditProfile, setEditProfile] = useState(false);
 
-  const { values, errors, isValid, handleChange } =
+  const { values, errors, isValid, handleChange, resetForm } =
     useFormValidation();
   const currentUser = useContext(CurrentUserContext);
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   useEffect(() => {
-    currentUser.name !== values.name || currentUser.email !== values.email
+    resetForm({ name: currentUser.name, email: currentUser.email });
+  }, [resetForm, currentUser, isEditingProfile]);
+
+  useEffect(() => {
+    currentUser.name !== values.name && currentUser.email !== values.email
       ? setBtnDisabled(false)
       : setBtnDisabled(true);
   }, [currentUser, values]);
@@ -38,16 +40,6 @@ function Profile({
     onUpdate(values);
   }
 
-
-  /*
-  const handleClickEditProfile = () => {
-    setEditProfile(true);
-  };
-
-  const handleClickSaveProfile = () => {
-    setEditProfile(false);
-  };
-*/
   return (
     <main className="profile">
       <section className="profile__section">
@@ -69,24 +61,23 @@ function Profile({
                 placeholder="Введите имя"
                 minLength="2"
                 maxLength="30"
-                value={!isEditingProfile ? currentUser.name : (values.name || "")}
+                value={values.name || ""}
                 onChange={handleChange}
                 disabled={!isEditingProfile || isNewEntranceOnPage}
                 pattern={NAME_REG}
                 required
               />
-              
             </label>
             <span className="profile__input-error">{errors.name}</span>
 
             <label className="profile__input-container profile__input-container_type_email">
-              <span className="profile__text" >E-mail</span>
+              <span className="profile__text">E-mail</span>
               <input
                 className="profile__text profile__text_input"
                 type="email"
                 name="email"
                 placeholder="Укажите e-mail"
-                value={!isEditingProfile ? currentUser.email : (values.email || "")}
+                value={values.email || ""}
                 onChange={handleChange}
                 disabled={!isEditingProfile || isNewEntranceOnPage}
                 pattern={EMAIL_REG}
@@ -94,9 +85,10 @@ function Profile({
               />
             </label>
             <span className="profile__input-error">{errors.email}</span>
-            <span className="profile__success">{success ? `${SUCCESS_NOTIFICATION}` : ''}</span>
+            <span className="profile__success">
+              {success ? `${SUCCESS_NOTIFICATION}` : ""}
+            </span>
           </div>
-
 
           <div className="profile__btns">
             <span className="profile__error">
