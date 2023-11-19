@@ -1,6 +1,6 @@
 export const MOVIES_API_URL = "https://api.nomoreparties.co";
-export const MAIN_API_URL = "http://localhost:3000";
-//export const MAIN_API_URL = "https://levi-69.nomoredomainsrocks.ru";
+//export const MAIN_API_URL = "http://localhost:3000";
+export const MAIN_API_URL = "https://levi-69.nomoredomainsrocks.ru";
 
 export const EMAIL_REG = "^\\S+@\\S+\\.\\S+$";
 export const NAME_REG = "^[A-Za-zА-Яа-яЁё\\-\\s]+$";
