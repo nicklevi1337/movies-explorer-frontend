@@ -41,26 +41,17 @@ function MoviesCardList({
         <p className="movies-card-list__not-found">{NOT_FOUND_MOVIES}</p>
       )}
 
-      {moviesPage && movies.length !== 0 && (
+      {movies && movies.length !== 0 && (
         <ul className="movies-card-list__container">
           {movies.map((movie) => {
             return (
               <MoviesCard
-                key={movie.id}
+                key={(moviesPage && movie.id) || (savedMoviesPage && movie._id)}
                 movie={movie}
                 onChangeSave={onChangeSave}
                 onDelete={onDelete}
                 savedMovies={savedMovies}
               />
-            );
-          })}
-        </ul>
-      )}
-      {savedMoviesPage && movies.length !== 0 && (
-        <ul className="movies-card-list__container">
-          {movies.map((movie) => {
-            return (
-              <MoviesCard key={movie._id} movie={movie} onDelete={onDelete} />
             );
           })}
         </ul>

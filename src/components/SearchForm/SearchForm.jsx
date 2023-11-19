@@ -15,7 +15,7 @@ function SearchForm({
   const [searchError, setSearchError] = useState("");
 
   useEffect(() => {
-    setSearchInputValue(inputValue || "");
+    setSearchInputValue(inputValue);
     setSearchError("");
   }, [inputValue]);
 
@@ -43,6 +43,7 @@ function SearchForm({
             <div className="search__input-wrapper">
               <input
                 type="text"
+                name="search"
                 className="search__input"
                 placeholder="Фильм"
                 required

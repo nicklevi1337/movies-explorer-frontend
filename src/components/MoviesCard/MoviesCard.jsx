@@ -10,13 +10,11 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
 
   useEffect(() => {
     if (pathname === "/movies")
-      setSavedMovie(
-        savedMovies.some((element) => movie.id === element.movieId)
-      );
+    setSavedMovie(savedMovies.some(element => movie.id === element.movieId))
   }, [savedMovies, movie.id, setSavedMovie, pathname]);
 
   const handleSave = () => {
-    if (savedMovies.some((element) => movie.id === element.movieId)) {
+    if (savedMovies.some(element => movie.id === element.movieId)) {
       setSavedMovie(false);
       onChangeSave(movie);
     } else {
@@ -29,12 +27,16 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
     onDelete(movie._id);
   };
 
+
   const convertDuration = (duration) => {
-    const durationInMinutes = parseInt(duration, 10);
-    const hours = Math.floor(durationInMinutes / 60);
-    const minutes = durationInMinutes % 60;
-    return `${hours}ч ${minutes}м`;
-  };
+    const minutes = duration % 60;
+    const hours = Math.floor(duration / 60);
+    if (hours < 1) {
+      return `${minutes}м`;
+    } else {
+      return `${hours}ч ${minutes}м`;
+    }
+  }
 
   return (
     <li className="movies-card">
@@ -57,7 +59,7 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
           <h2 className="movies-card__title">{movie.nameRU}</h2>
           <div className="movies-card__duration-wrapper">
             <p className="movies-card__duration">
-              {convertDuration(movie.duration)}
+            {convertDuration(movie.duration)}
             </p>
           </div>
         </div>
@@ -65,8 +67,7 @@ function MoviesCard({ movie, onChangeSave, onDelete, savedMovies }) {
       {pathname === "/movies" && (
         <button
           className={`movies-card__btn 
-        ${
-          !isSavedMovie
+        ${!isSavedMovie
             ? "movies-card__btn_type_save"
             : "movies-card__btn_type_saved"
         }`}

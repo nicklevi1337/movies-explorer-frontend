@@ -61,30 +61,34 @@ function Movies({ onChangeSave, onDelete, savedMovies }) {
     },
     [searchAndFilterMovies, isFilterOn]
   );
-
-  const handleOnFilterClick = useCallback(() => {
-    if (!firstEntrance) {
-      setFilter(isFilterOn);
-      const searchQuery = JSON.parse(localStorage.getItem("moviesSearchQuery"));
-      const allMovies = JSON.parse(localStorage.getItem("allMovies"));
-      const found = search(allMovies, searchQuery);
-      setFoundCards(found);
-      if (localStorage.getItem("moviesSearchQuery")) {
-        if (isFilterOn) {
-          const filtered = filter(foundCards, isFilterOn);
-          setRenderMovies(filtered);
-          localStorage.setItem("foundMovies", JSON.stringify(filtered));
-          localStorage.setItem("filterState", JSON.stringify(isFilterOn));
-        } else {
-          setRenderMovies(found);
-          localStorage.setItem("foundMovies", JSON.stringify(found));
-          localStorage.setItem("filterState", JSON.stringify(isFilterOn));
+  const handleOnFilterClick = useCallback(
+    (isFilterOn) => {
+      if (!firstEntrance) {
+        setFilter(isFilterOn);
+        const searchQuery = JSON.parse(
+          localStorage.getItem("moviesSearchQuery"),
+        );
+        const allMovies = JSON.parse(localStorage.getItem("allMovies"));
+        const found = search(allMovies, searchQuery);
+        setFoundCards(found);
+        if (localStorage.getItem("moviesSearchQuery")) {
+          if (isFilterOn) {
+            const filtered = filter(foundCards, isFilterOn);
+            setRenderMovies(filtered);
+            localStorage.setItem("foundMovies", JSON.stringify(filtered));
+            localStorage.setItem("filterState", JSON.stringify(isFilterOn));
+          } else {
+            setRenderMovies(found);
+            localStorage.setItem("foundMovies", JSON.stringify(found));
+            localStorage.setItem("filterState", JSON.stringify(isFilterOn));
+          }
         }
+      } else {
+        setFilter(isFilterOn);
       }
-    } else {
-      setFilter(isFilterOn);
-    }
-  }, [foundCards, firstEntrance]);
+    },
+    [foundCards, firstEntrance],
+  );
 
   function openMoreMovies() {
     setCount(count + renderMoreMovies().increase);

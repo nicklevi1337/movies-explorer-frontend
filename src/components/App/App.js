@@ -19,7 +19,6 @@ import {
   updateUserInfo,
   getProfileInfo,
   getMovies,
-  //  getContent,
   saveMovie,
   deleteMovie,
 } from "../../utils/MainApi.js";
@@ -27,8 +26,6 @@ import {
 function App() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-
-  // const [isRegister, setIsRegister] = React.useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [registerError, setRegisterError] = useState(false);
