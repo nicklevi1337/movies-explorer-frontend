@@ -60,7 +60,7 @@ function SearchForm({
         </div>
         <div className="search__filter-container">
           <FilterCheckbox
-            sFilterOn={isFilterOn}
+            isFilterOn={isFilterOn}
             onFilterChange={onFilterChange}
           />
           <p className="search__filter-title">Короткометражки</p>
