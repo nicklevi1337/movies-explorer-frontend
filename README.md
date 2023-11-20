@@ -22,6 +22,8 @@ npm start — запуск проекта в режиме разработки
 
 Ссылка на pull request :  https://github.com/PrettyLolli137/movies-explorer-frontend/pull/2
 
+" ссылка для pull request активна и я не понимаю почему такая странная "
+
 
 # Используемые технологии
 HTML
