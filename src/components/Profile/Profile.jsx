@@ -23,20 +23,35 @@ function Profile({
     useFormValidation();
   const currentUser = useContext(CurrentUserContext);
   const [btnDisabled, setBtnDisabled] = useState(false);
+/*
+  useEffect(() => {
+    if (
+      (currentUser.name !== values.name) ||
+      (currentUser.email !== values.email)
+    ) {
+      setBtnDisabled(false);
+    } else {
+      setBtnDisabled(true);
+    }
+  }, [currentUser.name, currentUser.email, values.name, values.email]);
+*/
+useEffect(() => {
+  if (currentUser.name === values.name && currentUser.email === values.email) {
+    setBtnDisabled(true);
+  } else {
+    setBtnDisabled(false);
+  }
+}, [currentUser.name, currentUser.email, values.name, values.email]);
 
   useEffect(() => {
     resetForm({ name: currentUser.name, email: currentUser.email });
   }, [resetForm, currentUser, isEditingProfile]);
 
-  useEffect(() => {
-    currentUser.name !== values.name && currentUser.email !== values.email
-      ? setBtnDisabled(false)
-      : setBtnDisabled(true);
-  }, [currentUser, values]);
-
   function handleSubmit(e) {
     e.preventDefault();
-    onUpdate(values);
+    if (isEditingProfile) {
+      onUpdate(values);
+    }
   }
 
   return (

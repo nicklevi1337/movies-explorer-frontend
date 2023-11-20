@@ -123,7 +123,7 @@
     font-weight  : 500;
 }
 
-.profile__btn_disable {
+.profile__btn_disabled {
     background: #f8f8f8;
     color     : #c2c2c2;
     cursor    : auto;

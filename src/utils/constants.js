@@ -1,6 +1,6 @@
 export const MOVIES_API_URL = "https://api.nomoreparties.co";
-export const MAIN_API_URL = "http://localhost:3000";
-//export const MAIN_API_URL = "https://levi-69.nomoredomainsrocks.ru";
+//export const MAIN_API_URL = "http://localhost:3000";
+export const MAIN_API_URL = "https://levi-69.nomoredomainsrocks.ru";
 
 export const EMAIL_REG = "^\\S+@\\S+\\.\\S+$";
 export const NAME_REG = "^[A-Za-zА-Яа-яЁё\\-\\s]+$";
@@ -22,7 +22,7 @@ export const INCREASE_SMALL_SCREEN_CARDS = 2;
 // Ошибка страницы с фильмами
 export const SEARCH_QUERY_ERROR = 'Нужно ввести ключевое слово!';
 export const SEARCH_SERVER_ERROR = "Запрос не прошел. Возможно, проблема с соединением или сервер недоступен.";
-export const NOT_FOUND_MOVIES = "Страница не найдена!";
+export const NOT_FOUND_MOVIES = "Ничего не найдено";
 
 
 // Ошибки регистрации
