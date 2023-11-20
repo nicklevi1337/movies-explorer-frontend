@@ -5,16 +5,15 @@ import Techs from "./../Techs/Techs";
 import AboutMe from "./../AboutMe/AboutMe";
 import Portfolio from "./../Portfolio/Portfolio";
 
-function Main({ user }) {
+function Main() {
   return (
-
-     <main className="main">
+    <main className="main">
       <Promo />
       <AboutProject />
       <Techs />
-      <AboutMe user={user} />
+      <AboutMe />
       <Portfolio />
-      </main>
+    </main>
   );
 }
 

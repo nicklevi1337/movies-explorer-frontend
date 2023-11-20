@@ -1,29 +1,36 @@
 import "./FormInput.css";
 
 function FormInput({
-  isError,
   title,
   type,
   name,
   minLength,
   maxLength,
-  value,
   placeholder,
+  autoComplete,
+  pattern,
+  value,
+  onChange,
   error,
+  isLoading,
 }) {
   return (
     <label className="form-input">
-       <span className="form-input__caption">{title}</span>
+      <span className="form-input__caption">{title}</span>
       <input
         className={`form-input__input ${
-          isError ? "form-input__input_valid_error" : ""
+          error ? "form-input__input_valid_error" : ""
         }`}
         type={type}
         name={name}
         minLength={minLength}
         maxLength={maxLength}
-        value={value}
+        value={value || ""}
+        pattern={pattern}
+        onChange={onChange}
         placeholder={placeholder}
+        autoComplete={autoComplete}
+        disabled={isLoading ? true : false}
         required
       />
       <span className="form-input__error">{error}</span>
