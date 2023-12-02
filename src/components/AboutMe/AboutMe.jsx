@@ -1,5 +1,5 @@
 import "./AboutMe.css";
-import avatar from "./../../images/aboutMe/me.jpg";
+import avatar from "./../../images/aboutMe/Nick.jpg";
 
 function AboutMe() {
   const birthYear = 2000;
@@ -8,7 +8,7 @@ function AboutMe() {
 
   return (
     <section id={"aboutMe"} className="aboutMe">
-      <h2 className="aboutMe__title">Студент</h2>
+      <h2 className="aboutMe__title">Программист</h2>
       <div className="aboutMe__container">
         <div className="aboutMe__container-life">
           <h3 className="aboutMe__name">Никита</h3>

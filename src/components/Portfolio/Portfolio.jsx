@@ -34,6 +34,17 @@ function Portfolio() {
         >
           Одностраничное приложение
         </a>
+        <hr className="portfolio__horizontal-rule"></hr>
+        <a
+          href="https://prettylolli137.github.io/DKF/"
+          title="Интерактивно-игровой сайт"
+          className="portfolio__link"
+          target="_blank"
+          rel="noreferrer"
+        >
+         Интерактивно-игровой сайт
+        </a>
+        <hr className="portfolio__horizontal-rule"></hr>
       </div>
     </section>
   );
