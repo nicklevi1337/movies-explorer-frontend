@@ -21,7 +21,7 @@ npm start — запуск проекта в режиме разработки
 
 # Ссылки
 
-Ссылка на сайт : <https://movie-levi-69.nomoredomainsrocks.ru/movies>
+Ссылка на сайт : <https://movie-levi-69.nomoredomainsrocks.ru>
 
 # Используемые технологии
 HTML
